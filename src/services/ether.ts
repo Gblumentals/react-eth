@@ -1,63 +1,65 @@
 import { ethers } from 'ethers';
 
 const ether = () => {
-  let provider: any = null;
+  let web3Provider: any = null;
+  let etherscanProvider: any = null;
   let wallet: any = null;
   let signer: any = null;
+  let history: any = null;
 
-  const getProvider = () => provider;
   const getWallet = () => wallet;
   const getSigner = () => signer;
 
-  const setProvider = async() => {
-    provider = new ethers.providers.Web3Provider((window as any).ethereum, "any");
+  const setProviders = async() => {
+    web3Provider = new ethers.providers.Web3Provider((window as any).ethereum, "any");
 
-    await provider.send("eth_requestAccounts", []);
-    signer = await provider.getSigner();
+    await web3Provider.send("eth_requestAccounts", []);
+    signer = await web3Provider.getSigner();
     wallet = await signer.getAddress();
     console.log("Account:", wallet);
+
+    etherscanProvider = new ethers.providers.EtherscanProvider();
+    history = await etherscanProvider.getHistory(wallet);
 
     return true;
   }
 
   const getBalance = async() => {
-    let balance = await provider.getBalance(wallet);
+    let balance = await web3Provider.getBalance(wallet);
     balance = ethers.utils.formatEther(balance);
     return balance
   }
 
   const getBlockNumber = async() => {
-    return await provider.getBlockNumber()
+    return await web3Provider.getBlockNumber()
   }
 
   const getGasPrice = async() => {
-    return await provider.getGasPrice()
+    return await web3Provider.getGasPrice()
   }
 
   const getTransaction = async(transactionHash: string) => {
-    return await provider.getTransaction(transactionHash)
+    return await web3Provider.getTransaction(transactionHash)
   }
 
   const getTransactionReceipt = async(transactionHash: string) => {
-    return await provider.getTransactionReceipt(transactionHash)
+    return await web3Provider.getTransactionReceipt(transactionHash)
   }
 
-  const eraseProvider = () => {
-    provider = null;
-    return true;
+  const getHistory = async() => {
+    return await etherscanProvider.getHistory(wallet);
   }
 
   return {
-    eraseProvider,
-    getProvider,
     getWallet,
     getSigner,
-    setProvider,
+    setProviders,
     getBalance,
     getBlockNumber,
     getGasPrice,
     getTransaction,
-    getTransactionReceipt
+    getTransactionReceipt,
+    getHistory
   }
 };
 

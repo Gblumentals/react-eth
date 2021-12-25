@@ -19,7 +19,7 @@ const Page = () => {
           variant="contained"
           className={classes.button}
           onClick={() => {
-            console.log("Loggin in...", ether.setProvider())
+            console.log("Loggin in...", ether.setProviders())
           }}
 
         >
@@ -29,10 +29,12 @@ const Page = () => {
           variant="contained"
           className={classes.button}
           onClick={() => {
-            console.log("Provider:", ether.getProvider())
+            ether.getGasPrice().then((price) => {
+              console.log("Gas:", price)
+            })
           }}
         >
-          Log Provider
+          Log Gas Price
         </Button>
         <Button
           variant="contained"
@@ -56,6 +58,19 @@ const Page = () => {
           }}
         >
           Get Balance
+        </Button>
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={() => {
+            console.log("Wallet:", ether.getWallet())
+            ether.getHistory().then((history) => {
+              console.log('history', history)
+              setBalance(history)
+            }).catch(e => console.log(e))
+          }}
+        >
+          Get History
         </Button>
       </div>
   </div>
