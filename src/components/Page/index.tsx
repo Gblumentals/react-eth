@@ -4,15 +4,22 @@ import ether from '../../services/ether'
 
 import Button from '@material-ui/core/Button';
 import Balance from '../Balance';
+import History from '../History';
 
 const Page = () => {
   const classes = useStyles()
   const [balance, setBalance] = useState('')
+  const [history, setHistory] = useState([])
 
   return (
     <div className={classes.root}>
       <div className={classes.balanceWrapper}>
-        <Balance balance={balance} />
+        { balance && (
+          <Balance balance={balance} />
+        )}
+        { history.length && (
+          <History history={history} />
+        )}
       </div>
       <div className={classes.buttonWrapper}>
         <Button
@@ -66,7 +73,7 @@ const Page = () => {
             console.log("Wallet:", ether.getWallet())
             ether.getHistory().then((history) => {
               console.log('history', history)
-              setBalance(history)
+              setHistory(history)
             }).catch(e => console.log(e))
           }}
         >
