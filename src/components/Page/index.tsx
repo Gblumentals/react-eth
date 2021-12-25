@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Page.css';
-import Window from '../Window'
+import useEther from '../../hooks/useEther'
 
 import Button from '@material-ui/core/Button';
 
-type Props = {
-  text: string
-}
 
+const Page = () => {
 
-const Page = (props: Props) => {
-  const [isWindowOpen, setIsWindowOpen] = useState<boolean>(false)
+  const eth = useEther()
 
   return (
     <div className="Page">
-      Page {props.text}
-      <Button variant="contained" onClick={() => { setIsWindowOpen(true) }} >Open</Button>
-
-      { isWindowOpen && (
-        <Window text={props.text} cb={() => { setIsWindowOpen(false) }}/>
-      )}
+      <Button variant="contained" onClick={() => { console.log(eth) }} >Log in</Button>
     </div>
   );
 }
