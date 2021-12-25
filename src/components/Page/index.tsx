@@ -38,10 +38,12 @@ const Page = () => {
           variant="contained"
           className={classes.button}
           onClick={() => {
-            console.log("Signer:", ether.getSigner())
+            ether.getBlockNumber().then((blockNumber) => {
+              console.log("Current Block Number:", blockNumber)
+            })
           }}
         >
-          Log Signer
+          Log Current Block
         </Button>
         <Button
           variant="contained"

@@ -1,5 +1,4 @@
 import { ethers } from 'ethers';
-import config from '../config';
 
 const ether = () => {
   let provider: any = null;
@@ -21,24 +20,44 @@ const ether = () => {
     return true;
   }
 
-  async function getBalance() {
+  const getBalance = async() => {
     let balance = await provider.getBalance(wallet);
     balance = ethers.utils.formatEther(balance);
     return balance
   }
 
-  const ereaseProvider = () => {
+  const getBlockNumber = async() => {
+    return await provider.getBlockNumber()
+  }
+
+  const getGasPrice = async() => {
+    return await provider.getGasPrice()
+  }
+
+  const getTransaction = async(transactionHash: string) => {
+    return await provider.getTransaction(transactionHash)
+  }
+
+  const getTransactionReceipt = async(transactionHash: string) => {
+    return await provider.getTransactionReceipt(transactionHash)
+  }
+
+  const eraseProvider = () => {
     provider = null;
     return true;
   }
 
   return {
-    ereaseProvider,
+    eraseProvider,
     getProvider,
     getWallet,
     getSigner,
     setProvider,
-    getBalance
+    getBalance,
+    getBlockNumber,
+    getGasPrice,
+    getTransaction,
+    getTransactionReceipt
   }
 };
 

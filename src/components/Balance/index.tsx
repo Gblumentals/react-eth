@@ -12,7 +12,7 @@ const Balance = (props: Props) => {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={3} className={classes.paper}>
+      <Paper elevation={3} classes={{root: classes.paper}}>
         <div className={classes.balanceWrapper}>
           {props.balance}
         </div>
