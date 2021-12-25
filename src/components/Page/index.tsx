@@ -53,7 +53,7 @@ const Page = () => {
           onClick={() => {
             console.log("Wallet:", ether.getWallet())
             ether.getBalance().then((balance) => {
-              setBalance(balance)
+              setBalance(JSON.stringify(balance))
             })
           }}
         >
