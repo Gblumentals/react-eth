@@ -10,13 +10,22 @@ const ether = () => {
   const getWallet = () => wallet;
   const getSigner = () => signer;
 
-  const setProvider = () => {
-    provider = new ethers.providers.JsonRpcProvider(config.provider);
-    wallet = new ethers.Wallet(config.privateKey);
-    signer = wallet.connect(provider);
+  const setProvider = async() => {
+    provider = new ethers.providers.Web3Provider((window as any).ethereum, "any");
+
+    await provider.send("eth_requestAccounts", []);
+    signer = await provider.getSigner();
+    wallet = await signer.getAddress();
+    console.log("Account:", wallet);
 
     return true;
-  };
+  }
+
+  async function getBalance() {
+    let balance = await provider.getBalance(wallet);
+    balance = ethers.utils.formatEther(balance);
+    return balance
+  }
 
   const ereaseProvider = () => {
     provider = null;
@@ -28,7 +37,8 @@ const ether = () => {
     getProvider,
     getWallet,
     getSigner,
-    setProvider
+    setProvider,
+    getBalance
   }
 };
 
