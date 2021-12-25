@@ -8,7 +8,6 @@ type Props = {
   cb: () => void
 }
 
-
 const Window = (props: Props) => {
 
   console.log("Window, props.callback ", props.cb)
