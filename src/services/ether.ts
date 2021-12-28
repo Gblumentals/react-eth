@@ -6,7 +6,6 @@ const ether = () => {
   let wallet: any = null;
   let signer: any = null;
 
-
   const getWallet = () => wallet;
   const getSigner = () => signer;
 

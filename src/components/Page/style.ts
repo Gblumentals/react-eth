@@ -12,11 +12,12 @@ const useStyles = makeStyles((theme) => ({
     height: 40
   },
   buttonWrapper: {
-    width: '100%',
+    width: '300px',
     display: 'flex',
-    justifyContent: 'space-around',
-    height: 80,
-    marginTop: 'auto'
+    flexDirection: 'column',
+    height: '100%',
+    padding: 8,
+    boxShadow: `-128px 0px 60px 100px ${theme.palette.primary.light}`
   },
   balanceWrapper: {
     width: '100%',
