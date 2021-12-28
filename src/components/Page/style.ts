@@ -6,12 +6,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     height: '100vh',
     display: 'flex',
-    flexDirection: 'column'
-  },
-  button: {
-    height: 40
   },
   buttonWrapper: {
+    marginRight: 'auto',
     width: '300px',
     display: 'flex',
     flexDirection: 'column',

@@ -6,9 +6,11 @@ const Button = (props: any) => {
   const classes = useStyles();
 
   return (
-    <MuiButton classes={{root: classes.root}}{...props}>
-      {props.children}
-    </MuiButton>
+    <div className={classes.buttonWrapper}>
+      <MuiButton classes={{root: classes.root}}{...props}>
+        {props.children}
+      </MuiButton>
+    </div>
   );
 }
 

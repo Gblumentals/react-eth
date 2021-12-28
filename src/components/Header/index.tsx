@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ether from '../../services/ether';
 
 export default function ButtonAppBar() {
   const classes = useStyles();
@@ -17,7 +18,15 @@ export default function ButtonAppBar() {
           <Typography variant="h5" className={classes.title}>
             ETH REACT
           </Typography>
-          <Button color="inherit" className={classes.loginButton}>Login</Button>
+          <Button
+            color="inherit"
+            className={classes.loginButton}
+            onClick={() => {
+              console.log("Loggin in...", ether.setProviders())
+            }}
+          >
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

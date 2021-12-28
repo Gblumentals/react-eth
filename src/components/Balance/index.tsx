@@ -1,6 +1,7 @@
 import useStyles from './style';
 
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 type Props = {
   balance: string
@@ -12,9 +13,9 @@ const Balance = (props: Props) => {
   return (
     <div className={classes.root}>
       <Paper elevation={3} classes={{root: classes.paper}}>
-        <div className={classes.balanceWrapper}>
+        <Typography className={classes.balanceWrapper}>
           {props.balance}
-        </div>
+        </Typography>
       </Paper>
     </div>
   );

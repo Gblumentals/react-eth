@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: 'auto'
+    margin: 'auto',
+    padding: 8,
   },
   paper: {
     display: 'flex',
@@ -13,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   balanceWrapper: {
     margin: 'auto',
     fontSize: 24,
-    color: theme.palette.primary.dark
   }
 }));
 

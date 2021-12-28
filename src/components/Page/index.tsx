@@ -3,10 +3,15 @@ import useStyles from './style';
 import ether from '../../services/ether'
 
 import Button from '../Button';
+import Balance from '../Balance';
 import Header from '../Header';
+import History from '../History';
 
 const Page = () => {
   const classes = useStyles()
+
+  const [balance, setBalance] = useState('')
+  const [history, setHistory] = useState([])
 
   return (
     <>
@@ -16,7 +21,6 @@ const Page = () => {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             onClick={() => {
               console.log("Loggin in...", ether.setProviders())
             }}
@@ -26,7 +30,6 @@ const Page = () => {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             onClick={() => {
               ether.getGasPrice().then((price) => {
                 console.log("Gas:", price)
@@ -38,7 +41,6 @@ const Page = () => {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             onClick={() => {
               ether.getBlockNumber().then((blockNumber) => {
                 console.log("Current Block Number:", blockNumber)
@@ -47,6 +49,39 @@ const Page = () => {
           >
             Log Current Block
           </Button>
+          <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            console.log("Wallet:", ether.getWallet())
+            ether.getBalance().then((balance) => {
+              setBalance(JSON.stringify(balance))
+            })
+          }}
+        >
+          Get Balance
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            console.log("Wallet:", ether.getWallet())
+            ether.getHistory().then((history) => {
+              console.log('history', history)
+              setHistory(history)
+            }).catch(e => console.log(e))
+          }}
+        >
+          Get History
+        </Button>
+        </div>
+        <div className={classes.balanceWrapper}>
+          { balance && (
+            <Balance balance={balance} />
+          )}
+          { history.length && (
+            <History history={history} />
+          )}
         </div>
     </div>
   </>

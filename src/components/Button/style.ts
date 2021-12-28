@@ -8,8 +8,11 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '-0.5px !important',
     boxShadow: '0px 0px 10px 2px inset !important',
     width: 'calc( 100% - 16px ) !important',
-    margin: 8
+
   },
+  buttonWrapper: {
+    margin: '8px'    
+  }
 }));
 
 export default useStyles
