@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useStyles from './style';
 import ether from '../../services/ether'
 
-import Button from '@material-ui/core/Button';
+import Button from '../Button';
 import Balance from '../Balance';
 import History from '../History';
 
@@ -24,6 +24,7 @@ const Page = () => {
       <div className={classes.buttonWrapper}>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => {
             console.log("Loggin in...", ether.setProviders())
@@ -34,6 +35,7 @@ const Page = () => {
         </Button>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => {
             ether.getGasPrice().then((price) => {
@@ -45,6 +47,7 @@ const Page = () => {
         </Button>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => {
             ether.getBlockNumber().then((blockNumber) => {
@@ -56,6 +59,7 @@ const Page = () => {
         </Button>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => {
             console.log("Wallet:", ether.getWallet())
@@ -68,6 +72,7 @@ const Page = () => {
         </Button>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => {
             console.log("Wallet:", ether.getWallet())
