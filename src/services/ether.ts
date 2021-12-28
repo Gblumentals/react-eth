@@ -5,7 +5,7 @@ const ether = () => {
   let etherscanProvider: any = null;
   let wallet: any = null;
   let signer: any = null;
-  let history: any = null;
+
 
   const getWallet = () => wallet;
   const getSigner = () => signer;
@@ -19,7 +19,7 @@ const ether = () => {
     console.log("Account:", wallet);
 
     etherscanProvider = new ethers.providers.EtherscanProvider();
-    history = await etherscanProvider.getHistory(wallet);
+
 
     return true;
   }

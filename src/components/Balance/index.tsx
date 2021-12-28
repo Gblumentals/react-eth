@@ -1,5 +1,4 @@
 import useStyles from './style';
-import ether from '../../services/ether'
 
 import Paper from '@material-ui/core/Paper';
 
