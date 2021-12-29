@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import useStyles from './style';
 import ether from '../../services/ether'
+import defi from '../../services/defi'
 
 import Button from '../Button';
 import Balance from '../Balance';
 import History from '../History';
+import Defi from '../Defi';
 
 const Page = () => {
   const classes = useStyles()
   const [balance, setBalance] = useState('')
   const [history, setHistory] = useState([])
+  const [projects, setProjects] = useState([])
 
   return (
     <div className={classes.root}>
@@ -19,6 +22,10 @@ const Page = () => {
         )}
         { history.length && (
           <History history={history} />
+        )}
+
+        { projects.length && (
+          <Defi projects={projects} />
         )}
       </div>
       <div className={classes.buttonWrapper}>
@@ -83,6 +90,19 @@ const Page = () => {
           }}
         >
           Get History
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={() => {
+            defi.setProjects().then((defiProjects) => {
+              console.log('DeFi projects', defiProjects)
+              setProjects(defiProjects)
+            }).catch(e => console.log(e))
+          }}
+        >
+          Get DeFi
         </Button>
       </div>
   </div>

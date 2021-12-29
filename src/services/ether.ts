@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 
+
 const ether = () => {
   let web3Provider: any = null;
   let etherscanProvider: any = null;
@@ -50,6 +51,10 @@ const ether = () => {
     return await etherscanProvider.getHistory(wallet);
   }
 
+  const resolveName = async(ens: string) => {
+    return await etherscanProvider.resolveName(ens);
+  }
+
   return {
     getWallet,
     getSigner,
@@ -59,7 +64,8 @@ const ether = () => {
     getGasPrice,
     getTransaction,
     getTransactionReceipt,
-    getHistory
+    getHistory,
+    resolveName
   }
 };
 
